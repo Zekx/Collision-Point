@@ -13,6 +13,7 @@
     var skip = pageSize * (page - 1); //Determine how many entries to skip depending on which page you are on.
 
     List<Post> viewAblePost = post.Select(p => p).Skip(skip).Take(pageSize).ToList<Post>();
+    bool logged = (bool)ViewData["logged"];
 }
 
 <style>
@@ -42,6 +43,13 @@
 
             @Html.Raw(@pst.body)
 
+            @if (logged)
+            {
+                <div class="pull-right">
+                    <a href="/PostEdit/Edit/EditPost">Edit</a>
+                    <a href="/PostEdit/Edit/EditPost">Remove</a>
+                </div>
+            }
             <footer>Posted on @pst.datePosted</footer>
             <hr style="border: 3px outset #595955;">
         </div>
