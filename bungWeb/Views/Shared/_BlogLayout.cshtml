@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{ 
+    bool logged = (bool)ViewData["logged"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_BlogLayout</title>
+
+    <!--CSS code -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+
+    <!--Script code-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <header style="padding: 10px; margin: 10px; font-size: 24px; font-family:Courier New, Courier, monospace">
+        Collision Point
+    </header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/Blog/Home">Home</a></li>
+                    <li><a href="~/Blog/Resume">Resume</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (logged == true)
+                    {
+                        <li><a href="~/Blog/CreatePost">New Post</a></li>
+                    }
+                    
+                    <li><a href="https://www.facebook.com/brandon.ung.37?ref=br_rs"><img src="/Content/Images/facebook.png" style="width:25px;height:25px;" /></a></li>
+                    <li><a href="https://www.linkedin.com/in/brandon-ung-2286b0b0/"><img src="/Content/Images/linkedin.png" style="width:25px;height:25px;" /></a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <div> 
+        @RenderBody()
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

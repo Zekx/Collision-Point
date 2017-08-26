@@ -1,0 +1,44 @@
+.page-header{
+    background-size: 100%;
+    background-color: gold;
+    overflow: hidden;
+}
+
+.content{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.tabSection{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.option1{
+    background-color: black;
+    color: white;
+    height: 120px;
+    width: 150px;
+    padding: 30px;
+    border:2px solid black;
+}
+
+.option1:hover{
+    background-color: white;
+    color: black;
+}
+
+.option2{
+    background-color: yellow;
+    color: black;
+    height: 120px;
+    width: 150px;
+    padding: 30px;
+    border:2px solid black;
+}
+
+.option2:hover{
+    background-color: white;
+    color: black;
+}

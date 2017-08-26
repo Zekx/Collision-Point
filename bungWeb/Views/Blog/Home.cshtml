@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
+}
+@using bungWeb.Models;
+@{ 
+    List<Post> post = (List<Post>)ViewData["posts"];
+    var pageSize = 10;
+    var pageAmount = (post.Count()/10) + 1; //Determine page amount;
+
+    var page = (int)ViewData["page"]; //Current Page
+    var skip = pageSize * (page - 1); //Determine how many entries to skip depending on which page you are on.
+
+    List<Post> viewAblePost = post.Select(p => p).Skip(skip).Take(pageSize).ToList<Post>();
+}
+
+<style>
+    #corner {
+        border-radius: 15px 50px 30px 5px;
+        padding: 5px;
+        width: 800px;
+        height: 130px;
+        background-color: gold;
+        color: black;
+    }
+
+</style>
+
+<div style="padding:10px">
+    <div id="corner">
+        <h2>Welcome to my blogsite</h2>
+        <h5>
+            Hello there, I am Brandon Ung and I created this page dedicated to my own learning of web design and to post my own musings. I will generally post up topics like
+            technology, food, restaurants, doodles and fun events I go to. Other information about me can be checked through my resume or other social media accounts as well.
+        </h5>
+    </div>    
+
+    @foreach (var pst in post) {
+        <div style="width:800px">
+            <h2>@pst.title <small>posted by @pst.author</small></h2><br/>
+
+            @Html.Raw(@pst.body)
+
+            <footer>Posted on @pst.datePosted</footer>
+            <hr style="border: 3px outset #595955;">
+        </div>
+    }
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="@Url.Action("Home", "Blog", new { val = (page-1)})" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (var i = 1; i <= pageAmount; i++)
+            {
+                <li><a href="@Url.Action("Home", "Blog", new { val = i})">@i</a></li>
+            }
+            <li>
+                <a href="@Url.Action("Home", "Blog", new { val = (page+1)})" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+

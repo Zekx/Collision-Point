@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
+}
+
+@{ 
+    string error = (string)ViewData["error"];
+    bool logged = (bool)ViewData["logged"];
+}
+
+<div style="padding-left:20px;border:solid;width:500px;height:400px;position:relative;left:30px">
+    <h2>Admin Login</h2>
+
+    @if (logged == false)
+    {
+        <form id="loginForm" action="@Url.Action("Login", "Blog")" method="post">
+            @if (!string.IsNullOrEmpty(error))
+            {
+                <h3>@error</h3>
+            }
+
+            <h3>Username</h3>
+
+            <input name="username" type="text" class="form-control input-sm" style="width:300px"/>
+
+            <h3>Password</h3>
+
+            <input name="password" type="password" class="form-control input-sm" style="width:300px" /> <br/>
+
+            <input type="submit" value="Login" class="btn btn-secondary" id="loginBtn"/>
+        </form>
+    }
+    else {
+        <h3>You are already logged in as @Session["user"]</h3><br />
+        <button onclick="logout()" class="btn-primary">Sign out</button>
+    }
+</div>
+
+<script>
+    function logout() {
+        location.href = "/Blog/Logout";
+    }
+</script>
